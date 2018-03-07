@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from __future__ import division
+from __future__ import division, print_function
 
-import pyOrbfit as orbfit
+from . import pyOrbfit as orbfit
 import numpy as np
 import ephem
 import matplotlib.pyplot as plt
@@ -226,7 +226,7 @@ class Orbit(object):
                            cov[ind_y][ind_x]/(scale_x*scale_y), cov[ind_y][ind_y]/scale_y**2]).reshape(2,2)
         U, s , Vh = np.linalg.svd(cov2x2) 
         orient = np.arctan2(U[1,0],U[0,0])*180/np.pi
-        print orient
+        print(orient)
         ellipsePlot = Ellipse(xy=pos, width=2.0*np.sqrt(s[0]), height=2.0*np.sqrt(s[1]), angle=orient, facecolor=face, edgecolor=edge, alpha=alpha, label=label)  
         return ellipsePlot
     
@@ -375,13 +375,13 @@ def main():
     o = Orbit(file='VP113.obs')
     body = o.ellipticalBody('VP113')
     body.compute('1998/01/01')
-    print 'PyEphem ra, dec', ephem.hours(body.a_ra), body.a_dec
+    print('PyEphem ra, dec', ephem.hours(body.a_ra), body.a_dec)
     d = ephem.date('1998/01/01')
     i = 0
     while i < 1:
         pos = o.predict_pos(d)
         ra, dec, err = pos['ra'], pos['dec'], pos['err']
-        print ephem.date(d), '\t', pos['ra'], '\t',pos['dec'], '\t', round(pos['err']['a'],3), '\t', round(pos['err']['b'],3), '\t', round(pos['err']['PA'],2)
+        print(ephem.date(d), '\t', pos['ra'], '\t',pos['dec'], '\t', round(pos['err']['a'],3), '\t', round(pos['err']['b'],3), '\t', round(pos['err']['PA'],2))
         d += 100
         i += 1
     

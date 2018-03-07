@@ -26,13 +26,17 @@ prepend_path()
 
 
 
-export PYORBFIT_HOME=/Users/gerdes/TNO/pyOrbfit
+export PYORBFIT_HOME=/Users/Bryce/Desktop/HITS/pyOrbfit/
 
 append_path LD_LIBRARY_PATH $PYORBFIT_HOME
 append_path DYLD_LIBRARY_PATH $PYORBFIT_HOME
 append_path C_INCLUDE_PATH $PYORBFIT_HOME
 append_path PATH $PYORBFIT_HOME
 append_path PYTHONPATH $PYORBFIT_HOME
+
+export PYORBFIT=$PYORBFIT_HOME
+export ORBIT_OBSERVATORIES=$PYORBFIT/observatories.dat
+export ORBIT_EPHEMERIS=$PYORBFIT/binEphem.423
 
 export LD_LIBRARY_PATH 
 export C_INCLUDE_PATH 
